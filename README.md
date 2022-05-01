@@ -7,6 +7,60 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Installation PHP, Composer and Postgre
+
+### 01 - Init PHP
+#### 1.1 - Updating System
+```sh
+sudo apt update
+sudo apt -y upgrade
+sudo reboot
+```
+#### 1.2 - Install Repository 
+```sh
+sudo apt install -y software-properties-common
+echo "deb https://packages.sury.org/php/ buster main" | sudo tee /etc/apt/sources.list.d/sury-php.list
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+```
+#### 1.3 - Reboot System 
+```sh
+sudo reboot 
+sudo apt update
+sudo apt upgrade
+```
+#### 1.4 - Install PHP and extension
+```sh
+sudo apt install php8.1
+sudo apt install php8.1-{mysql,intl,ldap,gd,cli,bz2,curl,mbstring,pgsql,opcache,soap,cgi,xml,fpm}
+```
+#
+### 02 - Init Composer
+#### 2.1 - Install packge composer
+```sh
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; }else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo mv composer.phar /usr/local/bin/composer
+```
+#
+### 03 - Init PostgreSQL
+#### 3.1 - Instalando PostgreSQL
+```sh
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+```
+#### 3.2 - Create User
+```sh
+sudo -i -u postgres
+psql
+CREATE USER nomedousuario SUPERUSER INHERIT CREATEDB CREATEROLE; 
+ALTER USER nomedousuario PASSWORD 'senha';
+```
+
+
+
+
 ## About API Contacts
 
 ## Register
